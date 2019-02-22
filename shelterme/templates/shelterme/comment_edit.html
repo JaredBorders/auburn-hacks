@@ -1,0 +1,10 @@
+{% include 'shelterme/header.html' %}
+<h1>Edit Comment</h1>
+<form action="{% url 'shelterme:comment_update' id=shelter.id comment_id=comment.id %}" method="post">
+    {% csrf_token %}
+    Comment:<br>
+    <textarea rows="8" cols="50" name="content">{{ comment.content }}</textarea>
+    <br><br>
+    <button>Update</button>
+</form>
+{% include 'shelterme/footer.html' %}

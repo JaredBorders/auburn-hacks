@@ -1,0 +1,55 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ShelterMe</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'shelterme/splash.css' %}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+        integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript"
+        async></script>
+    <script src="{% static 'shelterme/splash.js' %}" type="text/javascript" async></script>
+</head>
+
+<body>
+
+    {% if messages %}
+    {% for message in messages %}
+    <h5 class="display-1">{{ message }}</h5>
+    {% endfor %}
+    {% endif %}
+
+    <div id="landing-header">
+        <h1 class="display-4">ShelterMe</h1>
+        <form action="{% url 'shelterme:index' %}" method="get">
+            <div class="password-wrapper">
+                <input id="password-field" type="text" class="input" name="zip" placeholder="ZIP" pattern="[0-9]{5}"
+                    oninvalid="setCustomValidity('Please enter a valid 5-digit ZIP code')"
+                    oninput="setCustomValidity('')">
+                <input type="hidden" class="input" name="radius" value="10">
+                <span toggle="#password-field" class="ion ion-eye fas fa-home field-icon toggle-password"
+                    style="color: white;"><button style="display: none"></button></span>
+            </div>
+
+            <div class="strength-lines">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+    </div>
+    </form>
+    </div>
+
+    <ul class="slideshow">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+
+    {% include 'shelterme/footer.html' %}

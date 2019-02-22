@@ -1,0 +1,17 @@
+{% include 'shelterme/header.html' %}
+<h1>Register Your Shelter</h1>
+
+<form action="{% url 'shelterme:create' %}" method="post">
+	{% csrf_token %}
+	Shelter Name: <input type="text" name="shelter_name"><br>
+	Street Address: <input type="text" name="street_address"><br>
+	City: <input type="text" name="city"><br>
+	State: <input type="text" name="state"><br>
+	Zip Code: <input type="text" name="zip_code"><br>
+	Max Capacity: <input type="number" name="max_capacity" min="0" max="99999"><br>
+	Photo Link: <input type="text" name="photourl"><br>
+	<br>
+	<br>
+	<button>Register</button>
+</form>
+{% include 'shelterme/footer.html' %}

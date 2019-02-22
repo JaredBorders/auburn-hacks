@@ -1,0 +1,30 @@
+{% include 'shelterme/header.html' %}
+{% load static %}
+
+    <link rel="stylesheet" href="{% static 'shelterme/styles.css' %}" type="text/css"/>
+    <script src="{% static 'shelterme/googlemapscript.js' %}"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDdhk9bMyWcEDxp3ctjq632TO4vBWPOnak&callback=initMap"></script>
+    <div class="container">
+      
+      <!--Map-->
+      <div id="map"></div>
+
+      <!--Shelters-->
+      <div class="row text-center" style="display: flex; flex-wrap: wrap;"> <!-- Put styles in stylesheet-->
+        {% for location in locations %}
+          {% for shelter in location.shelter_set.all %}
+          <div class="col-lg-3 col-sm-6 col-xs-12">
+            <a class="thumbnail" href="{% url 'shelterme:show' shelter.id  %}">
+              <img class="img-responsive" src="{{ shelter.photo }}" alt="">
+              <div class="caption">
+                <h4>{{ shelter.name }}</h4>
+                <p>Capacity: {{ shelter.current_capacity }} / {{ shelter.max_capacity }}</p>
+              </div>
+            </a>
+          </div>
+          {% endfor %}
+        {% endfor %}
+      </div>
+    </div>
+
+{% include 'shelterme/footer.html' %}

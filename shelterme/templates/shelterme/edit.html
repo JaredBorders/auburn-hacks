@@ -1,0 +1,19 @@
+{% include 'shelterme/header.html' %}
+
+    	<h1>Update Your Shelter</h1>
+    
+	<form action="{% url 'shelterme:update' id=shelter.id %}" method="post">
+        {% csrf_token %}
+        Shelter Name: <input type="text" name="shelter_name" value="{{ shelter.name }}"><br>
+        Street Address: <input type="text" name="street_address" value="{{ shelter.street_addr }}"><br>
+        City: <input type="text" name="city" value="{{ shelter.location.city }}"><br>
+        State: <input type="text" name="state" value="{{ shelter.location.state }}"><br>
+        Zip Code: <input type ="text" name="zip_code" value="{{ shelter.zip }}"><br>
+        Max Capacity: <input type ="number" name="max_cap" value="{{ shelter.max_capacity }}" min="0" max="99999"><br>
+        Photo Link:<input type="text" name="photourl" value="{{ shelter.photo }}"><br>
+        <br>
+        <br>
+   		<button>Update</button>
+	</form>
+
+{% include 'shelterme/footer.html' %}
